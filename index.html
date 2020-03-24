@@ -122,14 +122,15 @@
         // Prevent the form submission
         event.preventDefault();
 
-        // Get the text
-        var textValue = text.value;
-
         // Bail if the text is blank
-        if (!textValue.trim()) return;
+        if (!text.value.trim()) return;
 
         // Update the #result element
-        result.textContent = aLtErNaTe(textValue);
+        result.textContent = aLtErNaTe(text.value);
+
+        // Clear the textarea and return focus
+        text.value = "";
+        text.focus();
 
       };
 
