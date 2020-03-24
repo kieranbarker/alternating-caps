@@ -67,6 +67,76 @@
 
       "use strict";
 
+      //
+      // Variables
+      //
+
+      // Get the necessary elements
+      var form = document.querySelector("form");
+      var text = document.querySelector("#text");
+      var result = document.querySelector("#result");
+
+
+      //
+      // Functions
+      //
+
+      /**
+       * Check if a number is even
+       * @param  {Number} number The number
+       * @return {Boolean}       Whether the value is even (true) or odd (false)
+       */
+      var isEven = function (number) {
+        return number % 2 === 0;
+      };
+
+      /**
+       * Convert a letter to uppercase or lowercase
+       * @param {String} letter The letter
+       * @param {Number} index  The letter's index in its array
+       * @return                The converted letter
+       */
+      var getUpperOrLower = function (letter, index) {
+        return isEven(index) ? letter.toLowerCase() : letter.toUpperCase();
+      };
+
+      /**
+       * Convert a string to aLtErNaTiNg CaPs
+       * @param  {String} string The string
+       * @return {String}        The aLtErNaTeD string
+       */
+      var aLtErNaTe = function (string) {
+        return string.split("").map(getUpperOrLower).join("");
+      };
+
+      /**
+       * Handle submit events
+       * @param {Object} event The Event interface
+       */
+      var submitHandler = function (event) {
+
+        // Prevent the form submission
+        event.preventDefault();
+
+        // Get the text
+        var textValue = text.value;
+
+        // Bail if the text is blank
+        if (!textValue.trim()) return;
+
+        // Update the #result element
+        result.textContent = aLtErNaTe(textValue);
+
+      };
+
+
+      //
+      // Init
+      //
+
+      // Listen to submit events on the form
+      form.addEventListener("submit", submitHandler);
+
     })();
   </script>
 </body>
