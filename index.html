@@ -133,10 +133,28 @@
 
       };
 
+      /**
+       * Initialize the app
+       */
+      var init = function () {
+
+        // Clear the textarea...
+        if (text.value) {
+          text.value = "";
+        }
+
+        // ...then give it focus
+        text.focus();
+
+      };
+
 
       //
       // Init
       //
+
+      // Initialize the app
+      init();
 
       // Listen to submit events on the form
       form.addEventListener("submit", submitHandler);
