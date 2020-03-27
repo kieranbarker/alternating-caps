@@ -63,7 +63,7 @@
     <label for="text">What do you want to say?</label>
     <textarea id="text" cols="30" rows="5"></textarea>
     <button type="submit">aLtErNaTe</button>
-    <button id="copy" type="button>">Copy to clipboard</button>
+    <button id="copy" type="button">Copy to clipboard</button>
   </form>
 
   <script>
@@ -122,7 +122,7 @@
         // Prevent the form submission
         event.preventDefault();
 
-        // Bail if the text is blank
+        // If the text is blank, do nothing
         if (!text.value.trim()) return;
 
         // Update the text element
@@ -134,6 +134,9 @@
        * Copy the aLtErNaTeD text to the clipboard
        */
       var copyText = function () {
+
+        // If the text is blank, do nothing
+        if (!text.value.trim()) return;
 
         // Select the text...
         text.select();
