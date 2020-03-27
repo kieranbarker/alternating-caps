@@ -63,9 +63,8 @@
     <label for="text">What do you want to say?</label>
     <textarea id="text" cols="30" rows="5"></textarea>
     <button type="submit">aLtErNaTe</button>
+    <button id="copy" type="button>">Copy to clipboard</button>
   </form>
-
-  <div id="result"></div>
 
   <script>
     ;(function() {
@@ -79,7 +78,7 @@
       // Get the necessary elements
       var form = document.querySelector("form");
       var text = document.querySelector("#text");
-      var result = document.querySelector("#result");
+      var copy = document.querySelector("#copy");
 
 
       //
@@ -126,27 +125,8 @@
         // Bail if the text is blank
         if (!text.value.trim()) return;
 
-        // Update the #result element
-        result.textContent = aLtErNaTe(text.value);
-
-        // Clear the textarea and return focus
-        text.value = "";
-        text.focus();
-
-      };
-
-      /**
-       * Initialize the app
-       */
-      var init = function () {
-
-        // Clear the textarea...
-        if (text.value) {
-          text.value = "";
-        }
-
-        // ...then give it focus
-        text.focus();
+        // Update the text element
+        text.value = aLtErNaTe(text.value);
 
       };
 
@@ -154,9 +134,6 @@
       //
       // Init
       //
-
-      // Initialize the app
-      init();
 
       // Listen to submit events on the form
       form.addEventListener("submit", submitHandler);
