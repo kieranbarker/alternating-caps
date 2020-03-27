@@ -159,6 +159,11 @@
       // Init
       //
 
+      // Clear the text
+      if (text.value) {
+        text.value = "";
+      }
+
       // Listen to submit events on the form
       form.addEventListener("submit", submitHandler);
 
