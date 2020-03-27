@@ -130,6 +130,27 @@
 
       };
 
+      /**
+       * Copy the aLtErNaTeD text to the clipboard
+       */
+      var copyText = function () {
+
+        // Select the text...
+        text.select();
+
+        // ...then copy it
+        document.execCommand("copy");
+
+        // Change the button text...
+        copy.textContent = "Copied to clipboard";
+
+        // ...then change it back after five seconds
+        setTimeout(function () {
+          copy.textContent = "Copy to clipboard";
+        }, 5000);
+
+      };
+
 
       //
       // Init
@@ -137,6 +158,9 @@
 
       // Listen to submit events on the form
       form.addEventListener("submit", submitHandler);
+
+      // Copy the aLtErNaTeD text to the clipboard
+      copy.addEventListener("click", copyText);
 
     })();
   </script>
