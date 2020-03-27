@@ -20,6 +20,10 @@
       line-height: 1.5;
     }
 
+    h1 {
+      font-style: italic;
+    }
+
     label,
     textarea {
       display: block;
@@ -27,6 +31,7 @@
     }
 
     label {
+      font-size: 1.5em;
       font-weight: bold;
     }
 
@@ -52,15 +57,14 @@
 <body>
   <h1>aLtErNaTiNg CaPs</h1>
 
-  <p>Express your inner turmoil. Or sarcasm. aLtErNaTiNg CaPs are versatile!</p>
+  <p>Express your inner turmoil. Or sarcasm. <a href="https://www.urbandictionary.com/define.php?term=aLtErNaTiNg%20CaPs">aLtErNaTiNg CaPs</a> are versatile!</p>
 
   <form>
-    <label for="text">tHe TeXt To AlTeRnAtE</label>
+    <label for="text">What do you want to say?</label>
     <textarea id="text" cols="30" rows="5"></textarea>
     <button type="submit">aLtErNaTe</button>
+    <button id="copy" type="button>">Copy to clipboard</button>
   </form>
-
-  <div id="result"></div>
 
   <script>
     ;(function() {
@@ -74,7 +78,7 @@
       // Get the necessary elements
       var form = document.querySelector("form");
       var text = document.querySelector("#text");
-      var result = document.querySelector("#result");
+      var copy = document.querySelector("#copy");
 
 
       //
@@ -118,14 +122,32 @@
         // Prevent the form submission
         event.preventDefault();
 
-        // Get the text
-        var textValue = text.value;
-
         // Bail if the text is blank
-        if (!textValue.trim()) return;
+        if (!text.value.trim()) return;
 
-        // Update the #result element
-        result.textContent = aLtErNaTe(textValue);
+        // Update the text element
+        text.value = aLtErNaTe(text.value);
+
+      };
+
+      /**
+       * Copy the aLtErNaTeD text to the clipboard
+       */
+      var copyText = function () {
+
+        // Select the text...
+        text.select();
+
+        // ...then copy it
+        document.execCommand("copy");
+
+        // Change the button text...
+        copy.textContent = "Copied to clipboard";
+
+        // ...then change it back after five seconds
+        setTimeout(function () {
+          copy.textContent = "Copy to clipboard";
+        }, 5000);
 
       };
 
@@ -136,6 +158,9 @@
 
       // Listen to submit events on the form
       form.addEventListener("submit", submitHandler);
+
+      // Copy the aLtErNaTeD text to the clipboard
+      copy.addEventListener("click", copyText);
 
     })();
   </script>
